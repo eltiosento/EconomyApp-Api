@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        /* === Configuración de página === */
+
+
+        @page {
+            size: A4;
+            margin: 4.6cm 1cm 3.5cm 1cm;
+
+            @top-center {
+                content: element(header);
+            }
+
+            @bottom-center {
+                content: element(footer);
+            }
+
+            /*
+            @bottom-right {
+                font-family: Arial, Helvetica, sans-serif;
+                content: "Page " counter(page) " of " counter(pages);
+            }
+            */
+        }
+
+        /* === Reset básico === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #142147;
+            margin: 0;
+            padding-bottom: 60px;
+        }
+
+        /* === Encabezado === */
+        #header {
+            font-family: Arial, sans-serif;
+            position: running(header);
+            width: 100%;
+            margin-top: 35px;
+        }
+
+        .header-inner {
+            background: url('images/cabecera.jpg');
+            padding: 25px 0;
+            position: relative;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .logo-container,
+        .report-title {
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        .logo-container {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #fff url('images/logo.png') center/contain no-repeat;
+            background-size: 80%;
+            margin-right: 20px;
+        }
+
+        .report-title {
+            color: #fff;
+            font-size: 36px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+        }
+
+        /* === Sección de métricas (fila) === */
+        .metrics {
+            text-align: center;
+            background: #fff;
+            padding: 30px 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .metric {
+            display: inline-block;
+            vertical-align: top;
+            width: 30%;
+            margin: 0 1%;
+            text-align: center;
+        }
+
+        .metric img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 12px;
+        }
+
+        .metric .value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #142147;
+            margin-bottom: 6px;
+        }
+
+        .metric .label {
+            font-size: 18px;
+            color: #37489B;
+            margin-bottom: 8px;
+        }
+
+        .metric .desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* === Contenido principal === */
+        .content {
+            padding: 0 0 60px 0;
+        }
+
+        .resum {
+            background-color: #142147;
+            width: 100%;
+            padding: 20px 0;
+            margin-top: 20px;
+
+        }
+
+        h2 {
+
+            color: white;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        /* === Tabla de Gastos === */
+        .expenses-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        .expenses-table th,
+        .expenses-table td {
+            border: 1px solid #ccc;
+            padding: 12px 8px;
+            text-align: left;
+        }
+
+        .expenses-table th {
+            background: #6374F9;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .expenses-table tbody tr:nth-child(even) {
+            background: #f5f7ff;
+        }
+
+        .category-name {
+            font-weight: bold;
+            color: #142147;
+        }
+
+        .subcategory td {
+            padding-left: 30px;
+            font-size: 13px;
+            color: #37489B;
+        }
+
+        #footer {
+            position: running(footer);
+            background: #142147;
+            padding: 13px 0;
+            margin-top: 35px;
+            margin-bottom: 10px;
+        }
+
+        .footer-inner {
+            margin: 0 auto;
+            display: inline-block;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: inline-block;
+            align-items: center;
+            margin: 0 30px;
+            /* Espacio entre los elementos Vertical | Horizontal */
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .contact-item img {
+            vertical-align: middle;
+            align-items: center;
+            margin-right: 10px;
+
+        }
+    </style>
+</head>
+
+
+<!-- Header -->
+<div id="header">
+    <div class="header-inner">
+        <div class="logo-container"></div>
+        <div class="report-title">Informe Mensual</div>
+    </div>
+</div>
+
+<div id="footer">
+    <div class="footer-inner">
+        <div class="contact-item">
+            <img src="images/telefono.png" style="width: 15px; height: 15px;" alt="Teléfono"></img>
+            <span>618-460-839</span>
+        </div>
+        <div class="contact-item">
+            <img src="images/email.png" style="width: 25px; height: 25px;" alt="Email"></img>
+            <span>economyapp@gmail.es</span>
+        </div>
+        <div class="contact-item">
+            <img src="images/web.png" style="width: 20px; height: 20px;" alt="Web"></img>
+            <span>www.economy-app.es</span>
+        </div>
+    </div>
+</div>
+
+<body>
+    <!-- Contenido -->
+    <div class="resum">
+        <h2 th:text="'Resumen de gastos de ' + ${month} + ' de ' + ${year}">Resumen de gastos</h2>
+    </div>
+    <div class="metrics">
+        <div class="metric">
+            <img src="images/ingresos.png" alt="Ingresos" />
+            <div th:text="${balance.totalIncome} + ' €'" class="value">€ 0.00</div>
+            <div class="label">Ingresos totales</div>
+            <div class="desc">Ingresos totales aportados durante el mes. Se destinarán a los gastos menusales y a los
+                ahorros.</div>
+        </div>
+        <div class="metric">
+            <img src="images/gastos.png" alt="Gastos" />
+            <div th:text="${balance.totalExpense} + ' €'" class="value">€ 0.00</div>
+            <div class="label">Gastos totales</div>
+            <div class="desc">Aquí se detalla el total de gastos realizados durante el mes, y se calcula el total
+                generado entre todas las categorías, excluyendo los ahorros.</div>
+        </div>
+        <div class="metric">
+            <img src="images/saldo.png" alt="Saldo" />
+            <div th:text="${balance.saldo} + ' €'" class="value">€ 0.00</div>
+            <div class="label">Saldo mensual</div>
+            <div class="desc">Esta cantidad equivale al balance mensual, es la cantidad en € del saldo que se dispone
+                para pasar el mes.
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <table class="expenses-table">
+            <thead>
+                <tr>
+                    <th>Categoría</th>
+                    <th>Gasto (€)</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="cat : ${categories}">
+                    <tr>
+                        <td th:text="${cat.categoryName}" class="category-name">Nombre</td>
+                        <td th:text="${cat.monthlyExpense}">0.00</td>
+                        <td th:text="${cat.description}">Descripción</td>
+                    </tr>
+                    <tr th:each="sub : ${cat.subcategories}" th:if="${cat.subcategories != null}" class="subcategory">
+                        <td th:text="${sub.categoryName}">Subcat</td>
+                        <td th:text="${sub.monthlyExpense}">0.00</td>
+                        <td th:text="${sub.description}">Desc Sub</td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>
